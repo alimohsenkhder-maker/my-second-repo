@@ -1,0 +1,35 @@
+name: Text File CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # مهم لكي يعمل git diff
+
+      - name: Show changed files
+        run: |
+          echo "🟢 CI is running..."
+          echo "📄 These are the changed files:"
+          git diff --name-only HEAD~1 HEAD
+
+      - name: Check if notes.txt exists
+        run: |
+          if [ -f notes.txt ]; then
+            echo "✔ notes.txt exists!"
+          else
+            echo "❌ notes.txt is missing!"
+            exit 1
+          fi
+
+      - name: Print file content
+        run: |
+          echo "📚 Content of notes.txt:"
+          cat notes.txt
