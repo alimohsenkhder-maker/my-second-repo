@@ -20,16 +20,16 @@ jobs:
           echo "📄 These are the changed files:"
           git diff --name-only HEAD~1 HEAD
 
-      - name: Check if notes.txt exists
+      - name: Check if y exists
         run: |
-          if [ -f notes.txt ]; then
-            echo "✔ notes.txt exists!"
+          if [ -f y ]; then
+            echo "✔ y exists!"
           else
-            echo "❌ notes.txt is missing!"
+            echo "❌ y is missing!"
             exit 1
           fi
 
       - name: Print file content
         run: |
-          echo "📚 Content of notes.txt:"
-          cat notes.txt
+          echo "📚 Content of y.txt:"
+          cat y
